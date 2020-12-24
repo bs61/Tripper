@@ -1,0 +1,119 @@
+name: trip
+description: A new Flutter application.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.0
+  firebase_core: ^0.5.3
+  cloud_firestore: ^0.14.4
+  firebase_auth: ^0.18.4
+  modal_progress_hud: ^0.1.3
+  provider: ^4.3.2+2
+  font_awesome_flutter: ^8.10.1
+
+dev_dependencies:
+  flutter_launcher_icons:
+  flutter_test:
+    sdk: flutter
+flutter_icons:
+  image_path_ios: 'assets/images/LOGO4.png'
+  image_path_android: 'assets/images/LOGO4.png'
+  android: true
+  ios: true
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/images/cities/Djerba/SightSeeing/
+    - assets/images/cities/ElJam/SightSeeing/
+    - assets/images/cities/Kairouan/SightSeeing/
+    - assets/images/cities/Mahdia/SightSeeing/
+    - assets/images/cities/Nabeul/SightSeeing/
+    - assets/images/cities/Sousse/SightSeeing/
+    - assets/images/cities/Zaghouane/
+    - assets/images/cities/Zarzis/
+    - assets/images/activities/Camping/Cap_serta_bizerte/
+    - assets/images/activities/Camping/nefza_beja/
+    - assets/images/activities/Camping/el_Ghdir_Ain_Drahem/
+    - assets/images/activities/Discovery/barrage_kaseb_beja/
+    - assets/images/activities/Discovery/desert/
+    - assets/images/activities/Discovery/Downtown_Tunis/
+    - assets/images/activities/Discovery/Medina_Tunis/
+    - assets/images/activities/Discovery/oasis/
+    - assets/images/activities/Discovery/sbeitla_kasserine/
+    - assets/images/activities/Discovery/Sidi_Bou_Said/
+    - assets/images/activities/Hiking/Capwabna/
+    - assets/images/activities/Hiking/jbal_rsas_ben_arous/
+    - assets/images/activities/Jet_ski/Djerba/
+    - assets/images/activities/Jet_ski/hammamet/
+    - assets/images/activities/Jet_ski/sousse/
+    - assets/images/activities/Parachute/hammamet/
+    - assets/images/activities/Parachute/Mahdia/
+    - assets/images/activities/Scuba_dive/djerba/
+    - assets/images/activities/Scuba_dive/galite_islands/
+    - assets/images/activities/Visiting_museums/Archaeological_Museum_of_El-Djem/
+    - assets/images/activities/Visiting_museums/bardo_museum/
+    - assets/images/activities/Visiting_museums/Lalla_Hadria_Museum_Djerba/
+    - assets/images/activities/Visiting_museums/Musee_de_Guellala_Djerba/
+
+  
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
