@@ -29,8 +29,9 @@ class _MyStatefulWidgetState extends State<Bottomnav> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static  List _widgetOptions =[
     Explore(),
-    Favorite(),
     Plans(),
+    Favorite(),
+
   ];
 
   void _onItemTapped(int index) {

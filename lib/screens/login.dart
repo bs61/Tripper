@@ -223,11 +223,7 @@ class _login extends State<loginPage> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(_errorMessage(m).toString(),
           )));
         }
-
-
-
     }
-
   }
 }
 

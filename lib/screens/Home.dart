@@ -67,7 +67,7 @@ class _ExploreState extends State<Explore> {
         children: <Widget>[
 
           Padding(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 16,),
+            padding: EdgeInsets.only(left: 10, right: 10, top: 15,),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search',
