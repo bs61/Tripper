@@ -6,7 +6,6 @@ import 'package:trip/screens/activities.dart';
 import 'package:trip/useful/constant.dart';
 import 'package:trip/useful/data.dart';
 import 'package:trip/useful/detail.dart';
-import 'package:trip/useful/bottomnavbar.dart';
 
 
 class Explore extends StatefulWidget {
@@ -61,7 +60,6 @@ class _ExploreState extends State<Explore> {
 
         ],
       ),
-
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -99,6 +97,7 @@ class _ExploreState extends State<Explore> {
 
           Expanded(
             child: Container(
+              height: 130,
               padding: EdgeInsets.only(top: 8, left: 16,),
               child: ListView(
                 physics: BouncingScrollPhysics(),
@@ -109,7 +108,7 @@ class _ExploreState extends State<Explore> {
           ),
 
           Container(
-            height: 120,
+            height: 100,
             padding: EdgeInsets.only(top: 8, left: 16,),
             child: ListView(
               physics: BouncingScrollPhysics(),
@@ -130,13 +129,13 @@ class _ExploreState extends State<Explore> {
           ),
 
           Container(
-            height: 90,
+            height: 80,
             child: PageView(
               physics: BouncingScrollPhysics(),
               children: buildFeatureds(),
             ),
           ),
-
+          SizedBox(height: 70.0,),
         ],
       ),
       // bottomNavigationBar: Container(
@@ -224,14 +223,14 @@ class _ExploreState extends State<Explore> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
 
-                        Text(
-                          place.description,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
+                        // Text(
+                        //   place.description,
+                        //   style: TextStyle(
+                        //     color: Colors.white,
+                        //     fontSize: 13,
+                        //     fontWeight: FontWeight.bold
+                        //   ),
+                        // ),
 
                         SizedBox(
                           height: 8,
@@ -324,7 +323,7 @@ class _ExploreState extends State<Explore> {
                     activity.actname,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 18,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

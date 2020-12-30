@@ -215,7 +215,6 @@ class _DetailState extends State<Detail> {
                     SizedBox(
                       height: 16,
                     ),
-
                     Container(
                       height: 60,
                       margin: EdgeInsets.symmetric(vertical: 8,),

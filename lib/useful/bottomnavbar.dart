@@ -39,13 +39,16 @@ class _MyStatefulWidgetState extends State<Bottomnav> {
       _selectedIndex = index;
     });
   }
+bool ind=false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Center(
         child: _widgetOptions.elementAt(selectedItem.index),
       ),
+      extendBody: true,
       bottomNavigationBar: Container(
         height: 60,
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8,),
@@ -79,6 +82,7 @@ class _MyStatefulWidgetState extends State<Bottomnav> {
       onTap: () {
         setState(() {
           selectedItem = item;
+          ind=item.ind;
         });
       },
       child: Container(

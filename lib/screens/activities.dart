@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:trip/useful/data.dart';
+import 'dart:ui';
 
 class Activities extends StatefulWidget {
   Activity acticity1;
@@ -42,15 +43,39 @@ class _activities extends State<Activities> {
         ),
 
       ),
-      body:ListView.builder(
-        physics: BouncingScrollPhysics(),
+      body:Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Image(image:AssetImage(widget.acticity1.actlist[0].imageUrl[0]),fit: BoxFit.cover,),
+
+          Center(
+            child: ClipRect(  // <-- clips to the 200x200 [Container] below
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 15.0,
+                  sigmaY: 15.0,
+                ),
+                child: Container(
+
+                  alignment: Alignment.center,
+                  child: Text('  '),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
     itemCount: widget.acticity1.actlist.length,
     itemBuilder: (context, index) {
-      return ActRow(activity2:widget.acticity1,indice: index);
+            return ActRow(activity2:widget.acticity1,indice: index);
     }
 
 
 
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -78,7 +103,7 @@ class ActRow extends StatelessWidget {
               width: 285,
               margin: new EdgeInsets.only(left: 46.0),
               decoration: BoxDecoration(
-                  color: Color(0xFFFAF7F0),
+                  color: Color(0xFFFAF7F0).withOpacity(0.4),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(8.0),
                   boxShadow: <BoxShadow>[

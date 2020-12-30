@@ -6,16 +6,17 @@ class NavigationItem {
 
   IconData iconData;
   int index;
+  bool ind;
 
-  NavigationItem(this.iconData,this.index);
+  NavigationItem(this.iconData,this.index,this.ind);
 
 }
 
 List<NavigationItem> getNavigationItemList(){
   return <NavigationItem>[
-    NavigationItem(Icons.home,0),
-     NavigationItem(Icons.map_outlined,1),
-    NavigationItem(Icons.favorite_sharp,2),
+    NavigationItem(Icons.home,0,false),
+     NavigationItem(Icons.map_outlined,1,false),
+    NavigationItem(Icons.favorite_sharp,2,true),
     // NavigationItem(Icons.person),
   ];
 }
@@ -40,10 +41,10 @@ List<Place> getPlaceList(){
         "Djerba",
         3580.9,
         [
-          "assets/images/Djerba/SightSeeing/tunisia-djerba-la-ghriba-synagogue-interior.jpg",
-          "assets/images/Djerba/SightSeeing/tunisia-djerba-houmt-souk-old-town-market.jpg",
-          "assets/images/Djerba/SightSeeing/tunisia-djerba-top-attractions-bordj-el-kebir.jpg",
-          "assets/images/Djerba/SightSeeing/tunisia-djerba-zarzis-mosque-of-zarzis.jpg",
+          "assets/images/cities/Djerba/SightSeeing/tunisia-djerba-la-ghriba-synagogue-interior.jpg",
+          "assets/images/cities/Djerba/SightSeeing/tunisia-djerba-houmt-souk-old-town-market.jpg",
+          "assets/images/cities/Djerba/SightSeeing/tunisia-djerba-top-attractions-bordj-el-kebir.jpg",
+          "assets/images/cities/Djerba/SightSeeing/tunisia-djerba-zarzis-mosque-of-zarzis.jpg",
         ],
         false,
         " "
@@ -53,10 +54,10 @@ List<Place> getPlaceList(){
         "ElJam",
         2990,
         [
-          "assets/images/ElJam/SightSeeing/tunisia-el-djem-amphitheatre.jpg",
-          "assets/images/ElJam/SightSeeing/tunisia-el-djem-amphitheatre-arena-view.jpg",
-          "assets/images/ElJam/SightSeeing/tunisia-el-djem-amphitheatre-facade.jpg",
-          "assets/images/ElJam/SightSeeing/tunisia-el-djem-amphitheatre-panorama.jpg",
+          "assets/images/cities/ElJam/SightSeeing/tunisia-el-djem-amphitheatre.jpg",
+          "assets/images/cities/ElJam/SightSeeing/tunisia-el-djem-amphitheatre-arena-view.jpg",
+          "assets/images/cities/ElJam/SightSeeing/tunisia-el-djem-amphitheatre-facade.jpg",
+          "assets/images/cities/ElJam/SightSeeing/tunisia-el-djem-amphitheatre-panorama.jpg",
         ],
         false,
         ""
@@ -66,10 +67,10 @@ List<Place> getPlaceList(){
         "Kairouan",
         4870.5,
         [
-          "assets/images/Kairouan/SightSeeing/tunisia-kairouan-aghlabid-basins.jpg",
-          "assets/images/Kairouan/SightSeeing/tunisia-kairouan-mosque-of-the-barber.jpg",
-          "assets/images/Kairouan/SightSeeing/tunisia-kairouan-top-attractions-great-mosque.jpg",
-          "assets/images/Kairouan/SightSeeing/tunisia-kairouan-top-attractions-medina.jpg",
+          "assets/images/cities/Kairouan/SightSeeing/tunisia-kairouan-aghlabid-basins.jpg",
+          "assets/images/cities/Kairouan/SightSeeing/tunisia-kairouan-mosque-of-the-barber.jpg",
+          "assets/images/cities/Kairouan/SightSeeing/tunisia-kairouan-top-attractions-great-mosque.jpg",
+          "assets/images/cities/Kairouan/SightSeeing/tunisia-kairouan-top-attractions-medina.jpg",
         ],
         false,
         ""
@@ -79,11 +80,11 @@ List<Place> getPlaceList(){
         "Mahdia",
         4120.5,
         [
-          "assets/images/Mahdia/SightSeeing/tunisia-mahdia-black-gate-entry-house-to-medina.jpg",
-          "assets/images/Mahdia/SightSeeing/tunisia-mahdia-bordj-el-kebir.jpg",
-          "assets/images/Mahdia/SightSeeing/tunisia-mahdia-medina-street-scene.jpg",
-          "assets/images/Mahdia/SightSeeing/tunisia-mahdia-top-attractions-great-mosque.jpg",
-          "assets/images/Mahdia/SightSeeing/tunisia-mahdia-top-attractions-old-harbor-area.jpg",
+          "assets/images/cities/Mahdia/SightSeeing/tunisia-mahdia-black-gate-entry-house-to-medina.jpg",
+          "assets/images/cities/Mahdia/SightSeeing/tunisia-mahdia-bordj-el-kebir.jpg",
+          "assets/images/cities/Mahdia/SightSeeing/tunisia-mahdia-medina-street-scene.jpg",
+          "assets/images/cities/Mahdia/SightSeeing/tunisia-mahdia-top-attractions-great-mosque.jpg",
+          "assets/images/cities/Mahdia/SightSeeing/tunisia-mahdia-top-attractions-old-harbor-area.jpg",
         ],
         false,
         ""
@@ -93,10 +94,10 @@ List<Place> getPlaceList(){
         "Nabeul",
         3990,
         [
-          "assets/images/Nabeul/SightSeeing/118256632_351463602555376_2622677211289998929_n.jpg",
-          "assets/images/Nabeul/SightSeeing/118371682_351463645888705_5148311259996981902_n.jpg",
-          "assets/images/Nabeul/SightSeeing/118379152_351463852555351_2344629841885565297_n.jpg",
-          "assets/images/Nabeul/SightSeeing/118394472_351463702555366_6166594799312235307_n.jpg",
+          "assets/images/cities/Nabeul/SightSeeing/118256632_351463602555376_2622677211289998929_n.jpg",
+          "assets/images/cities/Nabeul/SightSeeing/118371682_351463645888705_5148311259996981902_n.jpg",
+          "assets/images/cities/Nabeul/SightSeeing/118379152_351463852555351_2344629841885565297_n.jpg",
+          "assets/images/cities/Nabeul/SightSeeing/118394472_351463702555366_6166594799312235307_n.jpg",
         ],
         false,
         " "
@@ -106,10 +107,10 @@ List<Place> getPlaceList(){
         "Sousse",
         4055,
         [
-          "assets/images/Sousse/SightSeeing/tunisia-sousse-great-mosque.jpg",
-          "assets/images/Sousse/SightSeeing/tunisia-sousse-kasbah.jpg",
-          "assets/images/Sousse/SightSeeing/tunisia-sousse-medina-typical-medina-street-architecture.jpg",
-          "assets/images/Sousse/SightSeeing/tunisia-sousse-souk-district.jpg",
+          "assets/images/cities/Sousse/SightSeeing/tunisia-sousse-great-mosque.jpg",
+          "assets/images/cities/Sousse/SightSeeing/tunisia-sousse-kasbah.jpg",
+          "assets/images/cities/Sousse/SightSeeing/tunisia-sousse-medina-typical-medina-street-architecture.jpg",
+          "assets/images/cities/Sousse/SightSeeing/tunisia-sousse-souk-district.jpg",
         ],
         false,
         ""
@@ -119,10 +120,10 @@ List<Place> getPlaceList(){
         "Zaghouane",
         4055,
         [
-          "assets/images/Zaghouane/122074867_1696670903844505_5961102045273062722_o.jpg",
-          "assets/images/Zaghouane/122097396_1696670550511207_8238213662282877336_o.jpg",
-          "assets/images/Zaghouane/122099922_1696670337177895_1256491939160524673_o.jpg",
-          "assets/images/Zaghouane/122309225_1696671437177785_8790746345139450452_o.jpg",
+          "assets/images/cities/Zaghouane/122074867_1696670903844505_5961102045273062722_o.jpg",
+          "assets/images/cities/Zaghouane/122097396_1696670550511207_8238213662282877336_o.jpg",
+          "assets/images/cities/Zaghouane/122099922_1696670337177895_1256491939160524673_o.jpg",
+          "assets/images/cities/Zaghouane/122309225_1696671437177785_8790746345139450452_o.jpg",
         ],
         false,
         ""
@@ -132,10 +133,10 @@ List<Place> getPlaceList(){
         "zarzis",
         4055,
         [
-          "assets/images/Zarzis/118698785_1651638535014409_2187583044842240290_o.jpg",
-          "assets/images/Zarzis/118744010_1651638411681088_3551943538371895691_o.jpg",
-          "assets/images/Zarzis/118766666_1651639118347684_1930142356029671399_o.jpg",
-          "assets/images/Zarzis/118785551_1651638851681044_8887713457698289081_o.jpg",
+          "assets/images/cities/Zarzis/118698785_1651638535014409_2187583044842240290_o.jpg",
+          "assets/images/cities/Zarzis/118744010_1651638411681088_3551943538371895691_o.jpg",
+          "assets/images/cities/Zarzis/118766666_1651639118347684_1930142356029671399_o.jpg",
+          "assets/images/cities/Zarzis/118785551_1651638851681044_8887713457698289081_o.jpg",
         ],
         false,
         ""
