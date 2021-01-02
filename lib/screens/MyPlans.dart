@@ -21,7 +21,19 @@ class _State extends State<Plans> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: GestureDetector(child: Icon(Icons.power_settings_new_rounded,size:25.0 ,color: Colors.redAccent[400],),onTap: (){Navigator.pop(context);},),
+          leading:  Padding(
+            padding: const EdgeInsets.only(left:8.0),
+            child: Container(
+                    margin: EdgeInsets.only(right: 5, top: 5,),
+                    width: 50,
+                    child: CircleAvatar(
+            backgroundImage: AssetImage('assets/images/LOGO.png'),
+            foregroundColor: Colors.blue,
+                    ),
+                  ),
+          ),
+          
+          
           title: Text(
             "My Plans",
             style: TextStyle(
@@ -32,18 +44,11 @@ class _State extends State<Plans> {
           ),
           centerTitle: false,
           actions: <Widget>[
-
-            Container(
-              margin: EdgeInsets.only(right: 16, top: 8,),
-              width: 50,
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/LOGO.png'),
-                foregroundColor: Colors.blue,
-              ),
-            ),
+          
 
           ],
         ),
+        drawer:Drawer(),
       extendBodyBehindAppBar: true,
       body:
       Stack(
@@ -61,7 +66,7 @@ class _State extends State<Plans> {
                 child: Container(
 
                   alignment: Alignment.center,
-                  child: Text('Hello World'),
+                  child: Text('    '),
                 ),
               ),
             ),

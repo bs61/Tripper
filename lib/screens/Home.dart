@@ -6,6 +6,10 @@ import 'package:trip/screens/activities.dart';
 import 'package:trip/useful/constant.dart';
 import 'package:trip/useful/data.dart';
 import 'package:trip/useful/detail.dart';
+import 'package:trip/Provider/FavoritesProvider.dart';
+import 'package:provider/provider.dart';
+import 'ActivityDetails.dart';
+
 
 
 class Explore extends StatefulWidget {
@@ -28,16 +32,37 @@ class _ExploreState extends State<Explore> {
       selectedItem = navigationItems[0];
     });
   }
+   
 
+  
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: GestureDetector(child: Icon(Icons.power_settings_new_rounded,size:25.0 ,color: Colors.redAccent[400],),onTap: (){Navigator.pop(context);},),
+        leading: Builder(
+          builder: (context) => GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Container(
+                    margin: EdgeInsets.only(right: 5, top: 5,),
+                    width: 50,
+                    child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/LOGO.png'),
+                        foregroundColor: Colors.blue,
+                    ),
+                  ),
+                      ),
+          
+            onTap: () => Scaffold.of(context).openDrawer(),
+          
+          ),
+          ),
+          titleSpacing: 70.0,
         title: Text(
           "Explore",
           style: TextStyle(
@@ -49,17 +74,11 @@ class _ExploreState extends State<Explore> {
         centerTitle: false,
         actions: <Widget>[
 
-          Container(
-            margin: EdgeInsets.only(right: 16, top: 8,),
-            width: 50,
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/LOGO.png'),
-              foregroundColor: Colors.blue,
-            ),
-          ),
+         
 
         ],
       ),
+      
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -161,6 +180,7 @@ class _ExploreState extends State<Explore> {
   List<Widget> buildPlaces(){
     List<Widget> list = [];
     for (var place in places) {
+      place.favorite =Provider.of<Allfavorites>(context,listen:false).Favorites.contains(place);
       list.add(buildPlace(place));
     }
     return list;
@@ -198,7 +218,14 @@ class _ExploreState extends State<Explore> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      place.favorite = !place.favorite;
+                       
+                      if(place.favorite){
+                        Provider.of<Allfavorites>(context,listen:false).deletefavorite(place);
+                        place.favorite=false;
+                      }else{
+                        Provider.of<Allfavorites>(context,listen:false).addfavorite(place);
+                        place.favorite=true;
+                      }
                     });
                   },
                   child: Padding(
@@ -359,57 +386,56 @@ class _ExploreState extends State<Explore> {
 
   Widget buildFeatured(Featured featured){
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12,),
-      child: Card(
-        elevation: 0,
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(15),
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(featured.imageUrl),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16,),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-
-                Text(
-                  featured.year,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-
-                SizedBox(
-                  height: 4,
-                ),
-
-                Text(
-                  featured.title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-
-              ],
-            ),
-          ),
+        padding: EdgeInsets.symmetric(horizontal: 12,),
+        child: Card(
+    elevation: 0,
+    clipBehavior: Clip.antiAlias,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(15),
+      ),
+    ),
+         child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(featured.imageUrl),
+          fit: BoxFit.cover,
         ),
       ),
-    );
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16,),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              featured.year,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+
+            SizedBox(
+              height: 4,
+            ),
+
+            Text(
+              featured.title,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+
+          ],
+        ),
+      ),
+    ),
+        ),
+      );
   }
 
   List<Widget> buildNavigationItems(){

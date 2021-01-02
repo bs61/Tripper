@@ -6,11 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'Provider/FavoritesProvider.dart';
 import 'Provider/PlansProvider.dart';
-import 'screens/login.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'provider/modelHud.dart';
 import 'package:provider/provider.dart';
 import 'screens/splashscreen.dart';
+
 
   Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();

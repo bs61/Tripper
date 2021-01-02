@@ -252,7 +252,7 @@ class Acts {
 
   String city;
   String Location;
-  List imageUrl;
+  List<String> imageUrl;
 
 
   Acts(this.city,this.Location, this.imageUrl );
@@ -260,6 +260,12 @@ class Acts {
 }
 List<Acts> getCampingList(){
   return <Acts>[
+    Acts(
+      " Ain Drahem",
+      "el Ghdir",
+      ["assets/images/activities/Camping/nefza_beja/image1.jpg",
+        "assets/images/activities/Camping/nefza_beja/image2.jpg",],
+    ),
     Acts(
       " Bizerte",
       "Cap serta",
@@ -269,12 +275,6 @@ List<Acts> getCampingList(){
         "assets/images/activities/Camping/Cap_serta_bizerte/image4.jpg",
         "assets/images/activities/Camping/Cap_serta_bizerte/image5.jpg",
         "assets/images/activities/Camping/Cap_serta_bizerte/image6.jpg",],
-    ),
-    Acts(
-      " Ain Drahem",
-      "el Ghdir",
-      ["assets/images/activities/Camping/nefza_beja/image1.jpg",
-        "assets/images/activities/Camping/nefza_beja/image2.jpg",],
     ),
     Acts(
       " Beja",
@@ -413,14 +413,7 @@ List<Acts> getParachuteList(){
 }
 List<Acts> getScubaDiveList(){
   return <Acts>[
-    Acts(
-      " Djerba",
-      "Scuba Dive",
-      ["assets/images/activities/Scuba_dive/djerba/image1.jpg",
-        "assets/images/activities/Scuba_dive/djerba/image2.jpg",
-        "assets/images/activities/Scuba_dive/djerba/image3.jpg"],
-    ),
-    Acts(
+     Acts(
       " Bizerte",
       "Galite Islands",
       ["assets/images/activities/Scuba_dive/galite_islands/image1.jpg",
@@ -428,6 +421,14 @@ List<Acts> getScubaDiveList(){
         "assets/images/activities/Scuba_dive/galite_islands/image3.jpg",
         "assets/images/activities/Scuba_dive/galite_islands/image4.jpg"],
     ),
+    Acts(
+      " Djerba",
+      "Scuba Dive",
+      ["assets/images/activities/Scuba_dive/djerba/image1.jpg",
+        "assets/images/activities/Scuba_dive/djerba/image2.jpg",
+        "assets/images/activities/Scuba_dive/djerba/image3.jpg"],
+    ),
+   
   ];
 }
 List<Acts> getMuseumList(){

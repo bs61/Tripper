@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:trip/screens/login.dart';
+import 'package:trip/useful/bottomnavbar.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -50,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // route to MainScreen
   onDoneControl() async {
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => loginPage()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => Bottomnav()));
   }
 
   @override

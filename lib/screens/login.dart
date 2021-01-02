@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:trip/screens/SignUpPage.dart';
 import 'package:trip/services/auth.dart';
-import 'package:trip/screens/Home.dart';
 import 'package:trip/useful/bottomnavbar.dart';
 
 

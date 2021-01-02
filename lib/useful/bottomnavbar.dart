@@ -44,6 +44,7 @@ bool ind=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(),
 
       body: Center(
         child: _widgetOptions.elementAt(selectedItem.index),
