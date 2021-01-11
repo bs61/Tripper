@@ -1,7 +1,17 @@
+import 'dart:ui';
+import 'package:location/location.dart';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:trip/useful/data.dart';
+import 'package:trip/screens/MyPlans.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'package:provider/provider.dart';
+import 'package:trip/Commons/PlansModel.dart';
+import 'package:trip/Provider/PlansProvider.dart';
 
 class ActivityDetails extends StatefulWidget {
   Acts activity1;
@@ -95,22 +105,38 @@ class _ActivityDetailsState extends State<ActivityDetails> {
           const SizedBox(height: 2),
           Align(
             alignment: Alignment.topCenter,
-            child: Container(
-              width: 16,
-              height: 4,
-              color: Colors.grey.withOpacity(0.5),
+            child: GestureDetector(
+              onTap: () async {
+                // Inherit from context...
+                await SheetController.of(context).hide();
+                Future.delayed(const Duration(milliseconds: 1500), () {
+                  // or use the controller
+                  controller.show();
+                });
+              },
+              child: Container(
+                width: 16,
+                height: 4,
+                color: Colors.blue.withOpacity(0.5),
+              ),
             ),
           ),
           const SizedBox(height: 8),
           const SizedBox(height: 8),
           Text(
-            'Fastest route now due to traffic conditions.',
+            widget.activity1.location,
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 16,
+            ),
+          ),
+          Text(
+            widget.activity1.city,
             style: TextStyle(
               color: Colors.grey,
               fontSize: 16,
             ),
           ),
-          const SizedBox(height: 8),
         ],
       ),
     );
@@ -159,26 +185,22 @@ class _ActivityDetailsState extends State<ActivityDetails> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       color: Colors.white,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           button(
             const Icon(
-              Icons.navigation,
+              Icons.add,
               color: Colors.white,
             ),
             Text(
-              'Start',
+              'Add To Plan',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
               ),
             ),
-            () async {
-              // Inherit from context...
-              await SheetController.of(context).hide();
-              Future.delayed(const Duration(milliseconds: 1500), () {
-                // or use the controller
-                controller.show();
-              });
+            () {
+              _showMyDialog(context, widget.activity1);
             },
             color: Colors.blue,
           ),
@@ -191,11 +213,11 @@ class _ActivityDetailsState extends State<ActivityDetails> {
 
               return button(
                 Icon(
-                  !isExpanded ? Icons.list : Icons.map,
+                  !isExpanded ? Icons.list : Icons.keyboard_arrow_down_outlined,
                   color: Colors.blue,
                 ),
                 Text(
-                  !isExpanded ? 'Steps & more' : 'Show map',
+                  !isExpanded ? 'Show more' : 'Show less',
                   style: TextStyle(
                     fontSize: 15,
                   ),
@@ -215,7 +237,22 @@ class _ActivityDetailsState extends State<ActivityDetails> {
       ),
     );
   }
+  GoogleMapController mapController;
 
+  Location _location = Location();
+  List<Marker> allMarkers = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    allMarkers.add(Marker(
+        markerId: MarkerId('myMarker'),
+        draggable: true,
+        onTap: () {
+          print('Marker Tapped');
+        },
+        position: LatLng(widget.activity1.position[0], widget.activity1.position[1])));
+  }
   Widget buildChild(BuildContext context, SheetState state) {
     final divider = Container(
       height: 1,
@@ -228,6 +265,9 @@ class _ActivityDetailsState extends State<ActivityDetails> {
     );
 
     const padding = EdgeInsets.symmetric(horizontal: 16);
+    double lo=widget.activity1.position[0];
+    double la=widget.activity1.position[1];
+    final LatLng center =   new LatLng(lo, la);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -242,18 +282,35 @@ class _ActivityDetailsState extends State<ActivityDetails> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Traffic',
-                  style: titleStyle,
+              Container(
+              height: 248.0,
+              child: GoogleMap(
+                onMapCreated: (controller) {
+                  mapController = controller;
+                },
+                markers: Set.from(allMarkers),
+                scrollGesturesEnabled: true,
+                tiltGesturesEnabled: true,
+                rotateGesturesEnabled: true,
+                myLocationEnabled: true,
+                compassEnabled: true,
+                mapType: MapType.normal,
+                zoomGesturesEnabled: true,
+                initialCameraPosition:  CameraPosition(
+                  target: center,
+                  zoom: 15.0,
                 ),
-                const SizedBox(height: 16),
+              ),),
+
+
+
               ],
             ),
           ),
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 10),
         divider,
-        const SizedBox(height: 32),
+        const SizedBox(height: 15),
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -261,44 +318,18 @@ class _ActivityDetailsState extends State<ActivityDetails> {
             Padding(
               padding: padding,
               child: Text(
-                'Steps',
+                'Details',
                 style: titleStyle,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 1),
             buildSteps(context),
           ],
         ),
         const SizedBox(height: 32),
-        divider,
+
         const SizedBox(height: 32),
-        Icon(
-          Icons.flip_camera_android,
-          color: Colors.grey.shade900,
-          size: 48,
-        ),
-        const SizedBox(height: 16),
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            'Pull request are welcome!',
-            style: TextStyle(
-              color: Colors.grey.shade700,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            '(Stars too)',
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey,
-            ),
-          ),
-        ),
+
         const SizedBox(height: 32),
       ],
     );
@@ -306,15 +337,17 @@ class _ActivityDetailsState extends State<ActivityDetails> {
 
   Widget buildSteps(BuildContext context) {
     final steps = [
-      Step('Go to your pubspec.yaml file.', '2 seconds'),
-      Step("Add the newest version of 'sliding_sheet' to your dependencies.",
-          '5 seconds'),
-      Step("Run 'flutter packages get' in the terminal.", '4 seconds'),
-      Step("Happy coding!", 'Forever'),
+      Step('    '
+          , 'description'),
+      Step(widget.activity1.description,
+          'Price'),
+      Step(widget.activity1.price, ' '),
+
     ];
 
     return ListView.builder(
-      shrinkWrap: true,
+
+       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: steps.length,
       itemBuilder: (context, i) {
@@ -528,13 +561,11 @@ class _ActivityDetailsState extends State<ActivityDetails> {
         children: <Widget>[
           Expanded(
               child: GestureDetector(
-                onTap: (){
-                  print(Images(activity2).toString());
-                },
-                child: Carousel(
-            images: Images(activity2),
-          ),
-              )),
+            onTap: () {},
+            child: Carousel(
+              images: Images(activity2),
+            ),
+          )),
           //   Image.asset(
           //     'assets/images/LOGO.png',
           //     width: double.infinity,
@@ -548,6 +579,16 @@ class _ActivityDetailsState extends State<ActivityDetails> {
       ),
     );
   }
+
+  Future<void> _showMyDialog(context, Acts activ) async {
+    final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return Radiogaga(activ: activ,);
+        });
+  }
 }
 
 List<Widget> Images(Acts activ) {
@@ -559,9 +600,8 @@ List<Widget> Images(Acts activ) {
       width: double.infinity,
       fit: BoxFit.cover,
     ));
-
   }
-  return img ;
+  return img;
 }
 
 class Step {
@@ -581,3 +621,88 @@ class Traffic {
     this.time,
   );
 }
+class Radiogaga extends StatefulWidget {
+  Acts activ;
+  Radiogaga({this.activ});
+  @override
+  _RadiogagaState createState() => _RadiogagaState();
+}
+
+class _RadiogagaState extends State<Radiogaga> {
+
+  @override
+  Widget build(BuildContext context) {
+    List<Plan> plans = Provider.of<Allplans>(context).Plans;
+    Plan plan1;
+    plans.isEmpty
+        ? plan1 = Plan(Place: '', Name: '', activs: [])
+        : plan1 = plans[0];
+    return AlertDialog(
+      title: plans.isEmpty ? Text(' ') : Text('Add  Plan'),
+      content: Provider.of<Allplans>(context).Plans.isEmpty
+          ? Center(
+          child: RaisedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Plans()),
+              );
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+            child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(children: <TextSpan>[
+                  TextSpan(
+                    text: '+  ',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'Add new plan',
+                    style: TextStyle(
+                        fontSize: 20.0, fontWeight: FontWeight.bold),
+                  )
+                ])),
+
+            color: Colors.cyanAccent,
+          ))
+          : ListView.builder(
+        itemCount: plans.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(plans[index].Name),
+            leading: Radio<Plan>(
+              value: plans[index],
+              groupValue: plan1,
+              onChanged: (Plan value) {
+                setState(() {
+                  plan1 = value;
+                  print(plan1.Name);
+                });
+              },
+            ),
+          );
+        },
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: Text('Cancel'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        TextButton(
+            child: Text('Confirmer'),
+            onPressed: () {
+              Provider.of<Allplans>(context,listen: false).addactiv(plan1,widget.activ);
+            Navigator.of(context).pop();
+            }),
+      ],
+    );
+
+  }
+}
+

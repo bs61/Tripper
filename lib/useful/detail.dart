@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'constant.dart';
 import 'data.dart';
 import 'expandtext.dart';
-
+import 'package:provider/provider.dart';
+import 'package:trip/Provider/FavoritesProvider.dart';
 class Detail extends StatefulWidget {
 
   final Place place;
@@ -61,13 +62,7 @@ class _DetailState extends State<Detail> {
         ),
         actions: <Widget>[
 
-          Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-          ),
+
 
         ],
       ),
@@ -91,7 +86,7 @@ class _DetailState extends State<Detail> {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(image),
+                            image: NetworkImage(image),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -111,13 +106,17 @@ class _DetailState extends State<Detail> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          widget.place.favorite = !widget.place.favorite;
+                          if(Provider.of<Allfavorites>(context,listen: false).IsFav(widget.place)){
+                            Provider.of<Allfavorites>(context,listen: false).deletefavorite(widget.place);
+                          }else{
+                            Provider.of<Allfavorites>(context,listen: false).addfavorite(widget.place);
+                          }
                         });
                       },
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Icon(
-                          widget.place.favorite ? Icons.favorite : Icons.favorite_border,
+                          Provider.of<Allfavorites>(context).IsFav(widget.place) ? Icons.favorite : Icons.favorite_border,
                           color: kPrimaryColor,
                           size: 36,
                         ),
@@ -162,7 +161,7 @@ class _DetailState extends State<Detail> {
                             ),
 
                             Text(
-                              widget.place.country,
+                              widget.place.city,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -229,7 +228,7 @@ class _DetailState extends State<Detail> {
                       ),
                       child: Center(
                         child: Text(
-                          "+ ADD To Plan",
+                          "View Activities",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // route to MainScreen
   onDoneControl() async {
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => Bottomnav()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => loginPage()));
   }
 
   @override

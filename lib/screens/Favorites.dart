@@ -18,139 +18,149 @@ class _State extends State<Favorite> {
   Widget build(BuildContext context) {
     List<Place> MyFavs=Provider.of<Allfavorites>(context,listen:false).Favorites;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: GestureDetector(
-          child: Icon(
-            Icons.power_settings_new_rounded,
-            size: 25.0,
-            color: Colors.redAccent[400],
-          ),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "My Favorites",
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: false,
-        actions: <Widget>[
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   leading:  Padding(
+      // padding: const EdgeInsets.only(left:8.0),
+      // child: Container(
+      //   margin: EdgeInsets.only(right: 5, top: 5,),
+      //   width: 50,
+      //
+      //       child: CircleAvatar(
+      //         backgroundImage: AssetImage('assets/images/LOGO.png'),
+      //         foregroundColor: Colors.blue,
+      //       ),
+      //     ),
+      //   ),
+      //   title: Text(
+      //     "My Favorites",
+      //     style: TextStyle(
+      //       fontSize: 28,
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.black,
+      //     ),
+      //   ),
+      //   centerTitle: false,
+      //   actions: <Widget>[
+      //
+      //   ],
+      // ),
+      body: Column(
+        children: [
           Container(
-            margin: EdgeInsets.only(
-              right: 16,
-              top: 8,
+            height:90.0,
+            child:  Center(
+              child: Text(
+                "Favorites",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),),
+          Expanded(
+            child: ListView.builder(
+              itemCount:MyFavs.length ,
+              itemBuilder: (context,index){
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:8.0),
+                  child: Card(
+              elevation: 2,
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+              ),
+              child: Container(
+                  height: 170.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(MyFavs[index].images[0]),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+
+                      Padding(
+                        padding: const EdgeInsets.only(top:120.0),
+                        child: Container(
+                          color: Colors.black38.withOpacity(0.4),
+                          height: 70.0,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                           Provider.of<Allfavorites>(context,listen:false).deletefavorite(MyFavs[index]);
+
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 12, bottom: 12,),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Icon(
+                               Icons.favorite ,
+                              color: kPrimaryColor,
+                              size: 36,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 12, bottom: 12, right: 12,),
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              SizedBox(
+                                height: 8,
+                              ),
+
+                              Row(
+                                children: <Widget>[
+
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+
+                                  Text(
+                                    MyFavs[index].city,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+              ),
             ),
-            width: 50,
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/LOGO.png'),
-              foregroundColor: Colors.blue,
+                );
+              },
             ),
           ),
         ],
-      ),
-      body: ListView.builder(
-        itemCount:MyFavs.length ,
-        itemBuilder: (context,index){
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-        elevation: 2,
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(15),
-            ),
-        ),
-        child: Container(
-            height: 170.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(MyFavs[index].images[0]),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Stack(
-              children: <Widget>[
-
-                Padding(
-                  padding: const EdgeInsets.only(top:120.0),
-                  child: Container(
-                    color: Colors.black38.withOpacity(0.4),
-                    height: 70.0,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                     Provider.of<Allfavorites>(context,listen:false).deletefavorite(MyFavs[index]);
-                      
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 12, bottom: 12,),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Icon(
-                         Icons.favorite ,
-                        color: kPrimaryColor,
-                        size: 36,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 12, bottom: 12, right: 12,),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 8,
-                        ),
-
-                        Row(
-                          children: <Widget>[
-
-                            Icon(
-                              Icons.location_on,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-
-                            SizedBox(
-                              width: 8,
-                            ),
-
-                            Text(
-                              MyFavs[index].country,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                      ],
-                    ),
-                  ),
-                ),
-
-              ],
-            ),
-        ),
-      ),
-          );
-        },
       ),
       
       

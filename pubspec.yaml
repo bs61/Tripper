@@ -37,6 +37,10 @@ dependencies:
   flutter_material_pickers: ^1.8.1
   sliding_sheet: ^0.4.1
   carousel_pro: ^1.0.0
+  http: ^0.12.2
+  google_maps_flutter: ^1.0.10
+  firebase_storage: ^5.2.0
+  location: ^3.2.1
 
 dev_dependencies:
   flutter_launcher_icons:

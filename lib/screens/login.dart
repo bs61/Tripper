@@ -178,7 +178,7 @@ class _login extends State<loginPage> {
                   Row(
                     mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text("D'ont have an account ?",style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold)),
+                      Text("Don't have an account?",style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold)),
                       CupertinoButton(child: Text("SIGNUP",style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold)),onPressed: (){
                         Navigator.push(
                           context,

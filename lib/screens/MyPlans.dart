@@ -6,6 +6,9 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:provider/provider.dart';
 import 'package:trip/Commons/PlansModel.dart';
 import 'package:trip/Provider/PlansProvider.dart';
+import 'package:trip/useful//dropdownmenu.dart';
+
+import 'PlanDetails.dart';
 
 
 class Plans extends StatefulWidget {
@@ -16,44 +19,47 @@ class Plans extends StatefulWidget {
 class _State extends State<Plans> {
   @override
   Widget build(BuildContext context) {
+    var h= MediaQuery.of(context).size.height;
+    var w= MediaQuery.of(context).size.width;
     List<Plan> Myplans=Provider.of<Allplans>(context).Plans;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading:  Padding(
-            padding: const EdgeInsets.only(left:8.0),
-            child: Container(
-                    margin: EdgeInsets.only(right: 5, top: 5,),
-                    width: 50,
-                    child: CircleAvatar(
-            backgroundImage: AssetImage('assets/images/LOGO.png'),
-            foregroundColor: Colors.blue,
-                    ),
-                  ),
-          ),
-          
-          
-          title: Text(
-            "My Plans",
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-          centerTitle: false,
-          actions: <Widget>[
-          
-
-          ],
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   elevation: 0,
+        //   leading:  Padding(
+        //     padding: const EdgeInsets.only(left:8.0),
+        //     child: Container(
+        //             margin: EdgeInsets.only(right: 5, top: 5,),
+        //             width: 50,
+        //             child: CircleAvatar(
+        //     backgroundImage: AssetImage('assets/images/LOGO.png'),
+        //     foregroundColor: Colors.blue,
+        //             ),
+        //           ),
+        //   ),
+        //
+        //
+        //   title: Text(
+        //     "My Plans",
+        //     style: TextStyle(
+        //       fontSize: 28,
+        //       fontWeight: FontWeight.bold,
+        //       color: Colors.black,
+        //     ),
+        //   ),
+        //   centerTitle: false,
+        //   actions: <Widget>[
+        //
+        //
+        //   ],
+        // ),
         drawer:Drawer(),
       extendBodyBehindAppBar: true,
       body:
       Stack(
         fit: StackFit.expand,
         children: <Widget>[
+
            Image(image:AssetImage("assets/images/cities/Nabeul/SightSeeing/118256632_351463602555376_2622677211289998929_n.jpg"),fit: BoxFit.cover,),
 
           Center(
@@ -93,9 +99,14 @@ class _State extends State<Plans> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+
                           Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              // Padding(
+                              //   padding: const EdgeInsets.only(right: 28.0,top: 6.0),
+                              //   child: Center(child: Icon(Icons.add_circle_sharp,size: 30.0,)),
+                              // ),
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Row(
@@ -108,20 +119,38 @@ class _State extends State<Plans> {
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right:60.0),
-                            child: Text(Myplans[index].Name,style: TextStyle(fontSize: 19.0,fontWeight: FontWeight.w700),),
-                          ),
-
                           GestureDetector(
-                              onTap:(){
-                                _showMyDialog2(context,Myplans[index]);
-
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PlanDetails(activs:Myplans[index].activs,plan1:Myplans[index] ,)),
+                              );
+                              print(Myplans[index].activs.length);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right:60.0),
+                              child: Text(Myplans[index].Name,style: TextStyle(fontSize: 19.0,fontWeight: FontWeight.w700),),
+                            ),
+                          ),
+                          Container(
+                              height: 40.0,
+                              width: 40.0,
+                            child: SimpleAccountMenu(
+                              icons: [
+                                Icon(Icons.delete),
+                                Icon(Icons.add_circle_sharp),
+                              ],
+                              backgroundColor: Colors.grey.withOpacity(0.5),
+                              iconColor: Colors.white,
+                              onChange: (index) {
+                                print(index);
+                                if (index==0)
+                                  { _showMyDialog2(context,Myplans[index]);}
+                                else{}
                               },
-                              child: Container(
-                                  height: 40.0,
-                                  width: 40.0,
-                                  child: Center(child: Icon(Icons.delete,size: 30.0,color: Colors.redAccent,)))),
+                            ),
+                          )
+                                  // child: Center(child: Icon(Icons.delete,size: 30.0,color: Colors.redAccent,)))),
 
                         ],
                       ),
@@ -130,7 +159,22 @@ class _State extends State<Plans> {
                 );
               },
             ),
-          )
+          ),
+          Positioned(
+           top: 20.0,
+            bottom: 550.0,
+            right: 100.0,
+            left: 100.0,
+            child:  Center(
+              child: Text(
+                "My Plans",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),),
         ],
       ),
       // ClipRect(
@@ -166,9 +210,9 @@ class _State extends State<Plans> {
     'Hammamet',
     'sidi bou',
   ];
-  var selectedCity = "None";
+  var selectedCity="None";
   Row buildScrollRow(BuildContext context,) {
-
+     selectedCity = Provider.of<Allplans>(context,).Ville;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
@@ -198,8 +242,8 @@ class _State extends State<Plans> {
                 items: cities,
                 selectedItem: selectedCity,
                 onChanged: (value){
-                  selectedCity = value;
-                  setState((){});
+                  Provider.of<Allplans>(context,listen: false).addville(value);
+
                     },
                 onCancelled: () => print("Scroll Picker cancelled"),
                 onConfirmed: ()  {print("Scroll Picker confirmed");
@@ -281,7 +325,7 @@ class _State extends State<Plans> {
                   onPressed: () {
                     if (globalKey.currentState.validate()) {
                       globalKey.currentState.save();
-                      Provider.of<Allplans>(context,listen: false).addPlan(Plan(Place: selectedCity, Name: planname));
+                      Provider.of<Allplans>(context,listen: false).addPlan(Plan(Place: Provider.of<Allplans>(context,listen: false).Ville, Name: planname,activs: []));
                       Navigator.pop(context);
                     }
 

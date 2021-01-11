@@ -128,7 +128,7 @@ class ActRow extends StatelessWidget {
                       Text(activity2.actlist[indice].city,style: TextStyle(
                         fontSize: 20.0, fontStyle: FontStyle.italic,fontWeight: FontWeight.w400
                       ),),
-                      Text(activity2.actlist[indice].Location,style: TextStyle(
+                      Text(activity2.actlist[indice].location,style: TextStyle(
                           fontSize: 20.0,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.w400

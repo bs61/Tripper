@@ -6,6 +6,10 @@ class Allfavorites extends ChangeNotifier {
     Favorites.add(place1);
     notifyListeners();
   }
+  bool IsFav(Place j){
+    return Favorites.contains(j);
+    notifyListeners();
+  }
 
   deletefavorite(Place place1,) {
     Favorites.remove(place1);

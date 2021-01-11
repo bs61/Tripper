@@ -1,0 +1,12 @@
+String kplaces='Places';
+String Kactivities='Activities';
+String Kactivitydetails='Activities details';
+String kdescription='description';
+String kcity='city';
+String kplace='Place';
+String kprice='Price';
+String kimages='Images';
+String kact='activity name';
+String kiconUrl='icon position';
+String kiconColor='icon color';
+String kposition='Position';
