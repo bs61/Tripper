@@ -1,4 +1,4 @@
-
+import 'package:trip/Commons/PlansModel.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -225,246 +225,158 @@ class Featured {
 
 }
 
-List<Featured> getFeaturedList(){
-  return <Featured>[
-    Featured(
-      "Sousse",
-      "",
-      "assets/images/cities/Sousse/SightSeeing/tunisia-sousse-medina-typical-medina-street-architecture.jpg",
-    ),
-    Featured(
-      "Monastir",
-      "",
-      "assets/images/cities/Mahdia/SightSeeing/tunisia-mahdia-bordj-el-kebir.jpg",
-    ),
-    Featured(
-      "Djerba",
-      "",
-      "assets/images/cities/Djerba/SightSeeing/tunisia-djerba-la-ghriba-synagogue-interior.jpg",
-    ),
+List<Plan> getFeaturedList(){
+  return <Plan>[
+   Plan(Place:'Djerba',Name:'Dreamer Plan',activs:[
+     Acts(
+     " Djerba",
+     "Lalla Hadria Museum",
+     ["assets/images/activities/Visiting_museums/Lalla_Hadria_Museum_Djerba/image1.png",
+       "assets/images/activities/Visiting_museums/Lalla_Hadria_Museum_Djerba/image2.png"],
+     "Discover over 13 centuries of Arabo-Islamic art and culture at Lalla Hadria Museum. The modern building displays a vast collection of art and artifacts across 15 rooms, with over 1,000 pieces. Take a tour around the grand site, and see the exhibits of jewelry, paintings, old furniture, and carpets. Look for the special room dedicated to the display of traditional handmade jewelry.",
+     [33.8197621,11.0428423],
+     "",
+   ),
+     Acts(
+       " Djerba",
+       "Club Djerba plongée",
+       ["assets/images/activities/Scuba_dive/djerba/image1.jpg",
+         "assets/images/activities/Scuba_dive/djerba/image2.jpg",
+         "assets/images/activities/Scuba_dive/djerba/image3.jpg"],
+       "Adults and children, beginners or professionals, you will have the opportunity to practice scuba diving with highly qualified and experienced professionals in the field of diving, hunting and general underwater work. Discover breathtaking and unique views into the depths underwater of the island of Djerba.",
+       [33.7956078,10.8737397],
+       "150DT - 3 Hours",
+     ),
+     Acts(
+       " Djerba",
+       "Watersports Sirens",
+       ["assets/images/activities/Jet_ski/Djerba/image1.jpg"],
+       "Ride a jet ski along Djerba's coastline and experience the island from a different perspective. If you like adrenaline, accelerate and jump or choose a calmer speed to enjoy your ride.",
+       [33.7731355,10.7536623],
+       "100DT",
+     ),
+
+   ]),
+    Plan(Place:'North West',Name:'Adventurer Plan',activs:[
+      Acts(
+        " Beja",
+        "Barrage Kasseb",
+        ["assets/images/activities/Discovery/barrage_kaseb_beja/image1.jpg",
+          "assets/images/activities/Discovery/barrage_kaseb_beja/image2.jpg",],
+        "The Kasseb dam is a Tunisian dam inaugurated in 1969, located about twenty kilometers west of Beja . With a height of 57.6 meters and a crest length of 245 meters, it can retain up to 80 million cubic meters of water in a reservoir with an area of 437 hectares . The water in the reservoir is mainly intended for the drinking water supply of the city of Tunis and not for irrigation. The dam has a spillway 51 meters long with a maximum flow of 460 cubic meters per second. A hydroelectric plant with a capacity of 660 kW is located 400 meters downstream of the dam.",
+        [36.7705248,8.950907],
+        "",
+      ),
+      Acts(
+        " Ain Drahem",
+        "el Ghdir",
+        ["assets/images/activities/Camping/el_Ghdir_Ain_Drahem/image1.jpg",
+          "assets/images/activities/Camping/el_Ghdir_Ain_Drahem/image2.jpg",
+
+        ],
+        "Aïn Drahem is a small town in the North-West of Tunisia (Jendouba governorate) located about 20km south of Tabarka, it is characterized by greenery, open landscapes where the eye can only look into infinity. This marvelous city, with its mountains, waterfalls and trails, is a delight for hikers, photographers or simple people who like to walk freely and admire the beauty of the region. This place offers you the chance to admire its greenery and to live an exceptional camping experience.",
+        [36.7744862,8.6684489],
+        "60DT",
+      ),
+
+      Acts(
+        " Nefza, Beja",
+        "Cap Negro",
+        ["assets/images/activities/Camping/nefza_beja/image1.jpg",
+          "assets/images/activities/Camping/nefza_beja/image2.jpg",
+          "assets/images/activities/Camping/nefza_beja/image3.jpg",
+          "assets/images/activities/Camping/nefza_beja/image4.jpg",
+        ],
+        "Cap Negro is a paradise located between sea and forest in the northwest of Tunisia. It is located about 10km from Nefza, and about 20km from Tabarka. Cap Negro is a life-size painting. On one side, an emerald coloured sea, clear and limpid. And on the other side, a forest as far as the eye can see. The access to the beach is not easy, it will be necessary to exceed the 8km of track and count almost 3 hours of road from Tunis. But the Camping journey in such a unique place is worth it, because the place is magical. Cap Negro is the certainty of spending a beautiful day at the beach, in absolute calm, and far from everything.",
+        [36.9777679,9.0601156],
+        "",
+      ),
+
+   ]),
+    Plan(Place:'Bizerte',Name:'Hiker Plan',activs:[
+      Acts(
+        " Bizerte",
+        "Cap Farina",
+        ["assets/images/activities/Hiking/Capwabna/image1.jpg",
+          "assets/images/activities/Hiking/Capwabna/image2.jpg",
+          "assets/images/activities/Hiking/Capwabna/image3.jpg"],
+        "Cape Farina is a headland in Bizerte Governorate, Tunisia. It forms the northwestern end of the Gulf of Tunis. The Tunisian towns of Ghar el-Melh, Rafraf, Lahmeri, and the beach of Plage Sidi Ali Mekki Est are located along the peninsula.",
+        [37.1799992,10.2681896],
+        "",
+      ),
+      Acts(
+        " Bizerte",
+        "Galite Islands",
+        ["assets/images/activities/Scuba_dive/galite_islands/image1.jpg",
+          "assets/images/activities/Scuba_dive/galite_islands/image2.jpg",
+          "assets/images/activities/Scuba_dive/galite_islands/image3.jpg",
+          "assets/images/activities/Scuba_dive/galite_islands/image4.jpg"],
+        "In Tabarka, you’ll have the chance to spot a variety of marine creatures, from the eye-catching pink Swallowtail sea perch to the large dusky grouper that will swim right up to you. To add a bit of variety if you’re planning to do several dives over your trip, you could opt for a night dive or try an all-day trip to the beautiful Galite Islands, around three hours from Tabarka. The uninhabited islands offer divers spectacular views and a mesmerising array of sea life.",
+        [37.5281184,8.8933387],
+        "150DT - 3 Hours",
+      ),
+      Acts(
+        " Bizerte",
+        "Cap Serrat",
+        ["assets/images/activities/Camping/Cap_serta_bizerte/image1.jpg",
+          "assets/images/activities/Camping/Cap_serta_bizerte/image2.jpg",
+          "assets/images/activities/Camping/Cap_serta_bizerte/image3.jpg",
+          "assets/images/activities/Camping/Cap_serta_bizerte/image4.jpg",
+          "assets/images/activities/Camping/Cap_serta_bizerte/image5.jpg",
+          "assets/images/activities/Camping/Cap_serta_bizerte/image6.jpg",],
+        "With its picturesque old port, beautiful beaches, atmospheric corniche and great restaurants, Bizerte also has some amazing camping spots to offer,Cap Serrat being,hands down, the best.",
+        [37.2293942,9.2092897],
+        "",
+      ),
+
+   ]),
+    Plan(Place:'Tunis',Name:'Explorer Plan',activs:[
+      Acts(
+        " Tunis",
+        "Downtown",
+        ["assets/images/activities/Discovery/Downtown_Tunis/image1.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image2.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image3.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image4.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image5.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image6.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image7.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image8.jpg",
+          "assets/images/activities/Discovery/Downtown_Tunis/image9.jpg"],
+        "A world away from the organic jumble of the medina, Tunis' ville nouvelle was developed during the French colonial era. Its main core is Avenue Habib Bourguiba - a magnificently wide avenue planted with palms and eucalyptus trees.  The imposing St. Vincent de Paul Cathedral is the largest surviving building of Tunisia's French colonial period. Architecture fans should check out the wonderful mix of colonial and post-colonial buildings along Avenue Habib Bourguiba, from the Modernist inverted pyramid of Hotel du Lac to the more genteel and grand European-style of the government buildings. At the intersection with Avenue Mohammed V, Place d'Afrique has a clock monument symbolizing Tunisia's modern era.",
+        [36.800399,10.1844308],
+        "",
+      ),
+      Acts(
+        " Tunis",
+        "Medina",
+        ["assets/images/activities/Discovery/Medina_Tunis/image1.jpg",
+          "assets/images/activities/Discovery/Medina_Tunis/image2.jpg",
+          "assets/images/activities/Discovery/Medina_Tunis/image3.jpg",
+          "assets/images/activities/Discovery/Medina_Tunis/image4.jpg",
+          "assets/images/activities/Discovery/Medina_Tunis/image5.jpg",
+          "assets/images/activities/Discovery/Medina_Tunis/image6.jpg",
+          "assets/images/activities/Discovery/Medina_Tunis/image7.jpg",
+          "assets/images/activities/Discovery/Medina_Tunis/image8.jpg"],
+        "This sprawling maze of ancient streets and alleyways is one of the most impressive medieval medinas in North Africa and one of Tunisia's great treasures. It's home to numerous covered souqs selling everything from shoes to shisha pipes, as well as bustling cafes, back streets full of artisans at work and residential areas punctuated by grand, brightly painted doorways. Historic palaces, hammams, mosques and madrassas (schools for study of the Quran) are scattered throughout, many lavishly decorated with tiles, carved stucco and marble columns.",
+        [36.7985289,10.1604679],
+        "",
+      ),
+      Acts(
+        " Tunis",
+        "Sidi Bou Said",
+        ["assets/images/activities/Discovery/Sidi_Bou_Said/image1.jpg",
+          "assets/images/activities/Discovery/Sidi_Bou_Said/image2.jpg",
+          "assets/images/activities/Discovery/Sidi_Bou_Said/image3.jpg",
+          "assets/images/activities/Discovery/Sidi_Bou_Said/image4.jpg",
+          "assets/images/activities/Discovery/Sidi_Bou_Said/image6.jpg"],
+        "With its distinctive blue-and-white colour scheme, cobbled streets and jaw-dropping glimpses of azure waters, the cliff-top village of Sidi Bou Saïd is one of the prettiest spots in Tunisia. Named after a 13th-century Sufi saint, its distinctive architecture is a mix of the Ottoman and the Andalusian, a result of the influx of Spanish Muslims in the 16th century.",
+        [36.8715588,10.3343581],
+        "",
+      ),
+   ]),
   ];
 }
-//
-// class Acts {
-//
-//   String city;
-//   String place;
-//   List<String> imageUrl;
-//   String Location;
-//   String Price;
-//   String Description;
-//
-//
-//   Acts(this.city,this.place, this.imageUrl, );
-//
-// }
-// List<Acts> getCampingList(){
-//   return <Acts>[
-//     Acts(
-//       " Beja",
-//       "nefza",
-//       ["assets/images/activities/Camping/nefza_beja/image1.jpg",
-//         "assets/images/activities/Camping/nefza_beja/image2.jpg",
-//         "assets/images/activities/Camping/nefza_beja/image3.jpg",
-//         "assets/images/activities/Camping/nefza_beja/image4.jpg",
-//       ],
-//     ),
-//     Acts(
-//       " Ain Drahem",
-//       "el Ghdir",
-//       ["assets/images/activities/Camping/el_Ghdir_Ain_Drahem/image1.jpg",
-//         "assets/images/activities/Camping/el_Ghdir_Ain_Drahem/image2.jpg",],
-//     ),
-//     Acts(
-//       " Bizerte",
-//       "Cap serta",
-//       ["assets/images/activities/Camping/Cap_serta_bizerte/image1.jpg",
-//         "assets/images/activities/Camping/Cap_serta_bizerte/image2.jpg",
-//         "assets/images/activities/Camping/Cap_serta_bizerte/image3.jpg",
-//         "assets/images/activities/Camping/Cap_serta_bizerte/image4.jpg",
-//         "assets/images/activities/Camping/Cap_serta_bizerte/image5.jpg",
-//         "assets/images/activities/Camping/Cap_serta_bizerte/image6.jpg",],
-//     ),
-//
-//   ];
-// }
-//
-// List<Acts> getDiscoveryList(){
-//   return <Acts>[
-//     Acts(
-//       " Beja",
-//       "Barrage Kaseb",
-//       ["assets/images/activities/Discovery/barrage_kaseb_beja/image1.jpg",
-//         "assets/images/activities/Discovery/barrage_kaseb_beja/image2.jpg",],
-//     ),
-//     Acts(
-//       " Tembaine",
-//       "Desert Douz",
-//       ["assets/images/activities/Discovery/desert/image1.png",
-//         "assets/images/activities/Discovery/desert/image2.png",],
-//     ),
-//     Acts(
-//       " Tunis",
-//       "Downtown",
-//       ["assets/images/activities/Discovery/Downtown_Tunis/image1.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image2.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image3.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image4.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image5.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image6.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image7.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image8.jpg",
-//         "assets/images/activities/Discovery/Downtown_Tunis/image9.jpg"],
-//     ),
-//     Acts(
-//       " Tunis",
-//       "Medina",
-//       ["assets/images/activities/Discovery/Medina_Tunis/image1.jpg",
-//         "assets/images/activities/Discovery/Medina_Tunis/image2.jpg",
-//         "assets/images/activities/Discovery/Medina_Tunis/image3.jpg",
-//         "assets/images/activities/Discovery/Medina_Tunis/image4.jpg",
-//         "assets/images/activities/Discovery/Medina_Tunis/image5.jpg",
-//         "assets/images/activities/Discovery/Medina_Tunis/image6.jpg",
-//         "assets/images/activities/Discovery/Medina_Tunis/image7.jpg",
-//         "assets/images/activities/Discovery/Medina_Tunis/image8.jpg"],
-//     ),
-//     Acts(
-//       " Tozeur",
-//       "Oasis",
-//       [
-//         "assets/images/activities/Discovery/oasis/image2.jpg",
-//         "assets/images/activities/Discovery/oasis/image3.jpg",
-//         "assets/images/activities/Discovery/oasis/image4.jpg",
-//         "assets/images/activities/Discovery/oasis/image5.jpg"],
-//     ),
-//     Acts(
-//       " Kasserine",
-//       "Sbeitla",
-//       ["assets/images/activities/Discovery/sbeitla_kasserine/image1.jpg",
-//         "assets/images/activities/Discovery/sbeitla_kasserine/image2.jpg",
-//         "assets/images/activities/Discovery/sbeitla_kasserine/image3.jpg",
-//         "assets/images/activities/Discovery/sbeitla_kasserine/image4.jpg",
-//         "assets/images/activities/Discovery/sbeitla_kasserine/image5.jpg",
-//         "assets/images/activities/Discovery/sbeitla_kasserine/image6.jpg"],
-//     ),Acts(
-//       " Tunis",
-//       "Sidi Bou Said",
-//       ["assets/images/activities/Discovery/Sidi_Bou_Said/image1.jpg",
-//         "assets/images/activities/Discovery/Sidi_Bou_Said/image2.jpg",
-//         "assets/images/activities/Discovery/Sidi_Bou_Said/image3.jpg",
-//         "assets/images/activities/Discovery/Sidi_Bou_Said/image4.jpg",
-//         "assets/images/activities/Discovery/Sidi_Bou_Said/image5.jpg",
-//         "assets/images/activities/Discovery/Sidi_Bou_Said/image6.jpg"],
-//     ),
-//   ];
-// }
-// List<Acts> getHikingList(){
-//   return <Acts>[
-//     Acts(
-//       " Bizerte",
-//       "Cap farina",
-//
-//       ["assets/images/activities/Hiking/Capwabna/image1.jpg",
-//         "assets/images/activities/Hiking/Capwabna/image2.jpg",
-//         "assets/images/activities/Hiking/Capwabna/image3.jpg"],
-//     ),
-//     Acts(
-//       " Ben Arous",
-//       "Jbal Rsas",
-//       ["assets/images/activities/Hiking/jbal_rsas_ben_arous/image1.jpg",
-//         "assets/images/activities/Hiking/jbal_rsas_ben_arous/image2.jpg",
-//         "assets/images/activities/Hiking/jbal_rsas_ben_arous/image3.jpg",
-//         "assets/images/activities/Hiking/jbal_rsas_ben_arous/image4.jpg",
-//         "assets/images/activities/Hiking/jbal_rsas_ben_arous/image5.jpg"],
-//     ),
-//   ];
-// }
-// List<Acts> getJetSkiList(){
-//   return <Acts>[
-//     Acts(
-//       " Djerba",
-//       "Jet Ski",
-//       ["assets/images/activities/Jet_ski/Djerba/image1.jpg"],
-//     ),
-//     Acts(
-//       " Hammamet",
-//       "Jet Ski",
-//       ["assets/images/activities/Jet_ski/hammamet/image1.jpeg"],
-//     ),
-//     Acts(
-//       " Sousse",
-//       "Jet Ski",
-//       ["assets/images/activities/Jet_ski/sousse/image1.jpg"],
-//     ),
-//   ];
-// }
-// List<Acts> getParachuteList(){
-//   return <Acts>[
-//     Acts(
-//       " Hammamet",
-//       "Parachute",
-//       ["assets/images/activities/Parachute/hammamet/image1.jpg",
-//         "assets/images/activities/Parachute/hammamet/image2.jpg"],
-//     ),
-//     Acts(
-//       " Mahdia",
-//       "Parachute",
-//       ["assets/images/activities/Parachute/Mahdia/image1.jpg"],
-//     ),
-//   ];
-// }
-// List<Acts> getScubaDiveList(){
-//   return <Acts>[
-//      Acts(
-//       " Bizerte",
-//       "Galite Islands",
-//       ["assets/images/activities/Scuba_dive/galite_islands/image1.jpg",
-//         "assets/images/activities/Scuba_dive/galite_islands/image2.jpg",
-//         "assets/images/activities/Scuba_dive/galite_islands/image3.jpg",
-//         "assets/images/activities/Scuba_dive/galite_islands/image4.jpg"],
-//     ),
-//     Acts(
-//       " Djerba",
-//       "Scuba Dive",
-//       ["assets/images/activities/Scuba_dive/djerba/image1.jpg",
-//         "assets/images/activities/Scuba_dive/djerba/image2.jpg",
-//         "assets/images/activities/Scuba_dive/djerba/image3.jpg"],
-//     ),
-//
-//   ];
-// }
-// List<Acts> getMuseumList(){
-//   return <Acts>[
-//     Acts(
-//       " Mahdia",
-//       "Archaeological\n Museum of El-Djem",
-//       ["assets/images/activities/Visiting_museums/Archaeological_Museum_of_El-Djem/image1.jpg",
-//       "assets/images/activities/Visiting_museums/Archaeological_Museum_of_El-Djem/image2.jpg",
-//       "assets/images/activities/Visiting_museums/Archaeological_Museum_of_El-Djem/image3.jpg",
-//       "assets/images/activities/Visiting_museums/Archaeological_Museum_of_El-Djem/image4.jpg"],
-//     ),
-//     Acts(
-//       " Tunis",
-//       "Bardo Museum",
-//       ["assets/images/activities/Visiting_museums/bardo_museum/image1.jpg",
-//         "assets/images/activities/Visiting_museums/bardo_museum/image2.jpg"],
-//     ),
-//     Acts(
-//       " Djerba",
-//       "Lalla Hadria Museum",
-//       ["assets/images/activities/Visiting_museums/Lalla_Hadria_Museum_Djerba/image1.png",
-//         "assets/images/activities/Visiting_museums/Lalla_Hadria_Museum_Djerba/image2.png"],
-//     ),
-//     Acts(
-//       " Djerba",
-//       "Guellala Museum",
-//       ["assets/images/activities/Visiting_museums/Musee_de_Guellala_Djerba/image1.png",
-//         "assets/images/activities/Visiting_museums/Musee_de_Guellala_Djerba/image2.png",
-//         "assets/images/activities/Visiting_museums/Musee_de_Guellala_Djerba/image3.png"],
-//     ),
-//   ];
-// }
-
 class Acts {
 
   String city;

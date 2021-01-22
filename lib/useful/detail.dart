@@ -3,6 +3,8 @@ import 'constant.dart';
 import 'data.dart';
 import 'expandtext.dart';
 import 'package:provider/provider.dart';
+import 'package:trip/useful/Mapg2.dart';
+import 'package:trip/screens/Map.dart';
 import 'package:trip/Provider/FavoritesProvider.dart';
 class Detail extends StatefulWidget {
 
@@ -226,13 +228,22 @@ class _DetailState extends State<Detail> {
                             bottomRight: Radius.circular(30),
                           )
                       ),
-                      child: Center(
-                        child: Text(
-                          "View Activities",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Mapg2(Positions:widget.place.position)),
+                          );
+                        },
+                        child: Center(
+                          child: Text(
+                            "View Map",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),

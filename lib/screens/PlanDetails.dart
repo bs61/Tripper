@@ -7,26 +7,33 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:trip/Commons/PlansModel.dart';
 import 'package:trip/Provider/PlansProvider.dart';
+import 'package:trip/screens/Allactivities.dart';
+
 import 'package:trip/useful/data.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'ActivityDetails.dart';
 
 class PlanDetails extends StatefulWidget {
-  List<Acts> activs;
   Plan plan1;
-  PlanDetails({this.activs, this.plan1});
+  PlanDetails({ this.plan1});
   @override
   _PlanDetails createState() => _PlanDetails();
 }
 
 class _PlanDetails extends State<PlanDetails> {
+
   @override
   Widget build(BuildContext context) {
+    int ind = Provider.of<Allplans>(context).Plans.indexOf(widget.plan1);
+    List<Acts> activs=Provider.of<Allplans>(context).Plans[ind].activs;
+    Plan Myplan = Provider.of<Allplans>(context).Plans[ind];
     return SafeArea(
+
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           leading: FloatingActionButton(
@@ -40,44 +47,70 @@ class _PlanDetails extends State<PlanDetails> {
             ),
           ),
         ),
-        body: widget.activs.isEmpty
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 15.0, right: 20.0),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.add_circle_outline_rounded,
-                          size: 50.0,
-                          color: Colors.blue,
+        body: StatefulBuilder(
+    builder: (BuildContext context, StateSetter setState){return
+          activs.isEmpty
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0, right: 20.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.add_circle_outline_rounded,
+                            size: 50.0,
+                            color: Colors.blue,
+                          ),
+                          onPressed: () {
+                            // _showMyDialog2(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>MyListView() ),
+                            );
+
+                          },
                         ),
-                        onPressed: () {},
                       ),
                     ),
-                  ),
-                  Center(
-                    child: Text(
-                      'Add Activities',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.blue),
+                    Center(
+                      child: Text(
+                        'Add Activities',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.blue),
+                      ),
                     ),
-                  ),
-                ],
-              )
-            : PageView.builder(
-                itemCount: widget.activs.length,
-                itemBuilder: (context, index) {
-                  return Pagetemp(
-                    activity: widget.activs[index],
-                    plan2: widget.plan1,
-                  );
-                },
-                scrollDirection: Axis.vertical,
-              ),
+                  ],
+                )
+              : PageView.builder(
+            controller: PageController(
+              initialPage: 0,
+              keepPage: true,
+            ),
+                  itemCount: activs.length,
+                  itemBuilder: (context, index) {
+                    return Pagetemp(
+                      activity: activs[index],
+                      plan2: Myplan,
+                    );
+                  },
+                  scrollDirection: Axis.vertical,
+                );}
+        ),
       ),
     );
+  }
+  Future<void> _showMyDialog2(
+    context,
+  ) async {
+    final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(content: ExpPanel());
+        });
   }
 }
 
@@ -221,19 +254,7 @@ class _PagetempState extends State<Pagetemp> {
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Center(
-                      child: Container(
-                        height: 5.0,
-                        width: 20.0,
-                        decoration: BoxDecoration(
-                            color: Colors.black54,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50.0))),
-                      ),
-                    ),
+
                     SizedBox(
                       height: 5.0,
                     ),
@@ -341,40 +362,34 @@ class _PagetempState extends State<Pagetemp> {
                   ],
                 )),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                width: 5.0,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.46,
-                child: RaisedButton(
-                  onPressed: () {
-                    Provider.of<Allplans>(context, listen: false)
-                        .deleteactiv(widget.plan2, widget.activity);
-                  },
-                  child: Text(
-                    'Delete',
-                    style: TextStyle(fontSize: 12.0),
-                  ),
-                  color: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(770)),
-                    // side: BorderSide(width: 0.1, color: Colors.black)
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: 5.0,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.46,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Provider.of<Allplans>(context, listen: false)
+                          .deleteactiv(widget.plan2, widget.activity);
+                      setState(() {
+                      });
+                    },
+                    child: Text(
+                      'Delete',
+                      style: TextStyle(fontSize: 12.0),
+                    ),
+                    color: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(770)),
+                      // side: BorderSide(width: 0.1, color: Colors.black)
+                    ),
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ActivityDetails(
-                            activity1: widget.activity)),
-                  );
-                },
-                child: Container(
+                Container(
                   width: MediaQuery.of(context).size.width * 0.46,
                   child: RaisedButton(
                     child: Text(
@@ -382,16 +397,22 @@ class _PagetempState extends State<Pagetemp> {
                       style: TextStyle(fontSize: 10.0),
                     ),
                     color: Colors.blue,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ( context) =>
+                              ActivityDetails(activity1: widget.activity)),
+                    );},
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(770)),
                       // side: BorderSide(width: 0.1, color: Colors.black)
                     ),
                   ),
                 ),
-              ),
-              SizedBox(width: 5.0)
-            ],
+                SizedBox(width: 5.0)
+              ],
+
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -409,6 +430,123 @@ class _PagetempState extends State<Pagetemp> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(context, Acts activ) async {
+    final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return Radiogaga(
+            activ: activ,
+          );
+        });
+  }
+}
+
+class Item {
+  Item({
+    this.expandedValue,
+    this.headerValue,
+    this.isExpanded = false,
+  });
+
+  List<Acts> expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+class ExpPanel extends StatefulWidget {
+  @override
+  _ExpPanelState createState() => _ExpPanelState();
+}
+
+class _ExpPanelState extends State<ExpPanel> {
+  // stores ExpansionPanel state information
+
+  List<Item> generateItems() {
+    return List.generate(getDestinationList().length, (int index) {
+      return Item(
+        headerValue: getDestinationList()[index].actname,
+        expandedValue: getDestinationList()[index].actlist,
+      );
+    });
+  }
+
+// ...
+
+  Widget build(BuildContext context) {
+      return Container(
+        height: 500.0,
+
+        child: ListView.builder(
+          itemCount: getDestinationList().length,
+          itemBuilder: (context,index){
+            return Container(
+              height: 100.0,
+                width: 50.0,
+
+                child:ListView.builder(
+                itemCount: getDestinationList()[index].actlist.length,
+              itemBuilder: (context,index1){
+
+                return Text(getDestinationList()[index].actlist[index1].location);
+              }
+            ));
+          },
+        )
+      );
+
+  }
+
+
+
+
+
+
+
+
+
+  Widget _buildPanel() {
+    return Column(
+      children: [
+        ExpansionPanelList(
+          expansionCallback: (int index, bool isExpanded) {
+            setState(() {
+              generateItems()[index].isExpanded = !isExpanded;
+            });
+          },
+          children: generateItems().map<ExpansionPanel>((Item item) {
+            return ExpansionPanel(
+              headerBuilder: (BuildContext context, bool isExpanded) {
+                return ListTile(
+                  title: Text(item.headerValue),
+                );
+              },
+              body: StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  height: 500.0,
+                  child:
+                         ListTile(
+                            title: Text(item.expandedValue[0].city),
+                            trailing: Icon(Icons.delete),
+                            onTap: () {
+                              setState(() {
+                                generateItems().removeWhere(
+                                    (currentItem) => item == currentItem);
+                              });
+                            }),
+
+                );
+              }),
+              isExpanded: item.isExpanded,
+            );
+          }).toList(),
+        )
+      ],
     );
   }
 }

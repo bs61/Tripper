@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trip/screens/login.dart';
 import 'package:trip/useful/bottomnavbar.dart';
-
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,8 +10,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool _visible=false;
-  bool _visible1=false;
+  bool _visible = false;
+  bool _visible1 = false;
   @override
   void initState() {
     super.initState();
@@ -24,35 +24,43 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // 5 seconds later -> onDoneControl
   Future<Timer> goMainScreen() async {
-    return new Timer(Duration(milliseconds:6500 ), onDoneControl);
+    return new Timer(Duration(milliseconds: 6500), onDoneControl);
   }
-  Future<Timer>change1()async{
-    return new Timer(Duration(milliseconds: 700),  change0);
+
+  Future<Timer> change1() async {
+    return new Timer(Duration(milliseconds: 700), change0);
   }
-  Future<Timer>change2()async{
-    return new Timer(Duration(milliseconds: 5300),  change0);
+
+  Future<Timer> change2() async {
+    return new Timer(Duration(milliseconds: 5300), change0);
   }
-  change0()async{
+
+  change0() async {
     setState(() {
       _visible = !_visible;
     });
   }
-  change3()async{
+
+  change3() async {
     setState(() {
       _visible1 = !_visible1;
     });
   }
-  Future<Timer>change4()async{
-    return new Timer(Duration(milliseconds: 1200),  change3);
+
+  Future<Timer> change4() async {
+    return new Timer(Duration(milliseconds: 1200), change3);
   }
-  Future<Timer>change5()async{
-    return new Timer(Duration(milliseconds: 5400),  change3);
+
+  Future<Timer> change5() async {
+    return new Timer(Duration(milliseconds: 5400), change3);
   }
 
   // route to MainScreen
   onDoneControl() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var email = prefs.getString('email');
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => loginPage()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => email==null ? loginPage():Bottomnav()));
   }
 
   @override
@@ -61,39 +69,49 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.teal,
       body: Center(
           child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight, // 10% of the width, so there are ten blinds.
-                colors: [
-
-                  const Color(0xffF27121),
-                  const Color(0xffe94057),
-                  const Color(0xff8a2387),
-                ], // red to yellowred to yellow
-                tileMode: TileMode.repeated, // repeats the gradient over the canvas
-              ),
-            ),
-            child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-              Column(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment
+                .bottomRight, // 10% of the width, so there are ten blinds.
+            colors: [
+              const Color(0xffF27121),
+              const Color(0xffe94057),
+              const Color(0xff8a2387),
+            ], // red to yellowred to yellow
+            tileMode: TileMode.repeated, // repeats the gradient over the canvas
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                AnimatedOpacity(opacity: _visible ? 1.0 : 0.0,
+                AnimatedOpacity(
+                    opacity: _visible ? 1.0 : 0.0,
                     duration: Duration(milliseconds: 1000),
-                    child: Container(height:400.0,width:350.0,child: Image(image: AssetImage('assets/images/LOGO4.png'),fit: BoxFit.contain,))),
+                    child: Container(
+                        height: 400.0,
+                        width: 350.0,
+                        child: Image(
+                          image: AssetImage('assets/images/LOGO4.png'),
+                          fit: BoxFit.contain,
+                        ))),
                 AnimatedOpacity(
                   opacity: _visible1 ? 1.0 : 0.0,
                   duration: Duration(milliseconds: 1000),
                   child: Text("Welcome to Tripper",
-                      style: new TextStyle(fontStyle:FontStyle.italic, fontSize: 40,color: Colors.white)),
+                      style: new TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: 40,
+                          color: Colors.white)),
                 ),
               ],
             ),
-        ],
-      ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }

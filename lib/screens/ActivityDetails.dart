@@ -589,6 +589,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
           return Radiogaga(activ: activ,);
         });
   }
+
 }
 
 List<Widget> Images(Acts activ) {
@@ -645,7 +646,7 @@ class _RadiogagaState extends State<Radiogaga> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Plans()),
+                MaterialPageRoute(builder: (context) => Plans(variable: true,)),
               );
             },
             shape: RoundedRectangleBorder(
@@ -669,24 +670,26 @@ class _RadiogagaState extends State<Radiogaga> {
 
             color: Colors.cyanAccent,
           ))
-          : ListView.builder(
-        itemCount: plans.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(plans[index].Name),
-            leading: Radio<Plan>(
-              value: plans[index],
-              groupValue: plan1,
-              onChanged: (Plan value) {
-                setState(() {
-                  plan1 = value;
-                  print(plan1.Name);
-                });
-              },
-            ),
-          );
+          : StatefulBuilder(
+             builder: (BuildContext context, StateSetter setState){return ListView.builder(
+             itemCount: plans.length,
+             itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(plans[index].Name),
+              leading: Radio<Plan>(
+                value: plans[index],
+                groupValue: plan1,
+                onChanged: (Plan value) {
+                  setState(() {
+                    plan1 = value;
+                    print(plan1.Name);
+                  });
+                },
+              ),
+            );
         },
-      ),
+      );
+          }),
       actions: <Widget>[
         TextButton(
           child: Text('Cancel'),

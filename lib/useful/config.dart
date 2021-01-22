@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trip/screens/Favorites.dart';
 import 'package:trip/screens/MyPlans.dart';
+import 'package:trip/screens/Map.dart';
+import 'package:trip/screens/Allactivities.dart';
+
+
 
 Color primaryGreen = Color(0xff416d6d);
 List<BoxShadow> shadowList = [
@@ -20,27 +24,27 @@ List<Map> categories = [
 List<Map> drawerItems=[
   {
     'icon': Icons.directions_run_outlined,
-    'title' : 'view activities'
+    'title' : 'view activities',
+    'route': MyListView(),
 
-  },
+},
   {
     'icon': Icons.navigation,
-    'title' : 'view map'
+    'title' : 'view map',
+    'route':Mapg(),
+
   },
   {
     'icon': FontAwesomeIcons.plus,
     'title' : 'Add Plan',
-    'route':Plans(),
+    'route':Plans(variable: true,),
   },
   {
     'icon': Icons.favorite,
     'title' : 'view favorites',
-    'route': Favorite(),
+    'route': Favorite(variable: true,),
   },
 
 
-  {
-    'icon': FontAwesomeIcons.userAlt,
-    'title' : 'Profile'
-  },
+  
 ];

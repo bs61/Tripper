@@ -9,6 +9,8 @@ import 'package:trip/useful/constant.dart';
 
 
 class Favorite extends StatefulWidget {
+  bool variable = false;
+  Favorite({this.variable});
   @override
   _State createState() => _State();
 }
@@ -50,15 +52,29 @@ class _State extends State<Favorite> {
         children: [
           Container(
             height:90.0,
-            child:  Center(
-              child: Text(
-                "Favorites",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+            child:  Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                widget.variable
+                    ?Padding(
+                      padding: const EdgeInsets.only(right:70.0),
+                      child: IconButton(icon: Icon(Icons.arrow_back,size: 30.0,),onPressed: (){Navigator.pop(context);},),
+                    )
+                    :Padding(
+                      padding: const EdgeInsets.only(right:120.0),
+                      child: SizedBox(),
+                    ),
+                Center(
+                  child: Text(
+                    "Favorites",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),),
           Expanded(
             child: ListView.builder(

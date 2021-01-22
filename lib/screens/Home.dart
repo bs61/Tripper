@@ -1,10 +1,11 @@
 import 'dart:ui';
-
+import 'package:trip/Commons/PlansModel.dart';
 import 'package:trip/Commons/global.dart';
 import 'package:trip/services/StoreAndLoad.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:trip/screens/activities.dart';
+import 'package:trip/screens/FeaturedDetails.dart';
 import 'package:trip/useful/constant.dart';
 import 'package:trip/useful/data.dart';
 import 'package:trip/useful/detail.dart';
@@ -25,7 +26,7 @@ class _ExploreState extends State<Explore> {
   List<Place> places = getPlaceList();
   List<Place> places2 = [];
   List<Activity> activities = getDestinationList();
-  List<Featured> featureds = getFeaturedList();
+  List<Plan> featureds = getFeaturedList();
   @override
   void initState() {
     super.initState();
@@ -469,14 +470,14 @@ class _ExploreState extends State<Explore> {
     return list;
   }
 
-  Widget buildFeatured(Featured featured) {
+  Widget buildFeatured(Plan featured) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //       builder: (context) => PlanDetails(activs: [Acts('', '', [])])),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FeaturedDetails(plan1:featured)),
+        );
       },
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -493,7 +494,7 @@ class _ExploreState extends State<Explore> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(featured.imageUrl),
+                image: AssetImage(featured.activs[0].imageUrl[1]),
                 fit: BoxFit.cover,
               ),
             ),
@@ -506,7 +507,7 @@ class _ExploreState extends State<Explore> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    featured.city,
+                    featured.Place,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -517,7 +518,7 @@ class _ExploreState extends State<Explore> {
                     height: 4,
                   ),
                   Text(
-                    featured.title,
+                    featured.Name,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

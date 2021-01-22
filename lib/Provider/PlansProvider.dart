@@ -14,6 +14,9 @@ class Allplans extends ChangeNotifier {
     Plans[i].activs.add(activ1);
     notifyListeners();
   }
+  bool Planexist(Plan plan1){
+    return Plans.contains(plan1);
+  }
   deleteactiv(Plan plan1,Acts activ1) {
     Plans[Plans.indexOf(plan1)].activs.remove(activ1);
     notifyListeners();

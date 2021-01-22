@@ -36,8 +36,8 @@ class _MyStatefulWidgetState extends State<Bottomnav> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static  List _widgetOptions =[
     Explore(),
-    Plans(),
-    Favorite(),
+    Plans(variable: false,),
+    Favorite(variable: false,),
   ];
 
   void _onItemTapped(int index) {
@@ -58,6 +58,8 @@ bool ind=false;
     Map<String, dynamic> ref={};
     Store _store =Store();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+
       body: Stack(
         children: [
           DrawerScreen(),
