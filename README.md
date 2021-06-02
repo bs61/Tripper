@@ -1,7 +1,7 @@
-# trip
+# Tripper
 
-A new Flutter application.
-
+An application that helps in :
+Making it easier for Tunisian, International Travelers & Explorers to discover Tunisia. Also it helps in Planning Local Trips based on a large set of destination places.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
