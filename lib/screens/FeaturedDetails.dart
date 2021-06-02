@@ -312,7 +312,6 @@ class _PagetempState extends State<Pagetemp> {
                     Provider.of<Allplans>(context, listen: false).addPlan(widget.plan2);
 
                     setState(() {});}else{
-                      print("blabala");
                     }
                   },
                   child: Text(
